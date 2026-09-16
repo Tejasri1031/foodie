@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Foodie - Payment</title>
+
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #fff7f2;
+    color: #222;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    background: white;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #f4510b;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 25px;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: #f4510b;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.page-title h1 {
+    font-size: 32px;
+    color: #f4510b;
+    margin-bottom: 8px;
+}
+
+.page-title p {
+    color: #777;
+}
+
+
+/* =========================
+   PAYMENT LAYOUT
+========================= */
+
+.payment-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 30px;
+}
+
+.payment-box {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.payment-box h2 {
+    margin-bottom: 25px;
+    font-size: 22px;
+}
+
+.section-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    outline: none;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #f4510b;
+}
+
+.form-group textarea {
+    height: 80px;
+    resize: none;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+
+/* =========================
+   PAYMENT METHODS
+========================= */
+
+.payment-methods {
+    margin-top: 30px;
+}
+
+.payment-option {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.payment-option:hover {
+    border-color: #f4510b;
+}
+
+.payment-option input {
+    accent-color: #f4510b;
+}
+
+.payment-option label {
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+
+/* =========================
+   CARD DETAILS
+========================= */
+
+#cardDetails {
+    display: none;
+    margin-top: 15px;
+    padding: 18px;
+    background: #fffaf7;
+    border-radius: 8px;
+}
+
+
+/* =========================
+   ORDER SUMMARY
+========================= */
+
+.summary {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    height: fit-content;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.summary h2 {
+    margin-bottom: 22px;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #555;
+    font-size: 14px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    color: #555;
+}
+
+.summary-total {
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+    padding-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.total-price {
+    color: #f4510b;
+}
+
+
+/* =========================
+   PLACE ORDER BUTTON
+========================= */
+
+.place-order {
+    width: 100%;
+    margin-top: 25px;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #f4510b;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.place-order:hover {
+    background: #d94005;
+}
+
+
+/* =========================
+   BACK CART
+========================= */
+
+.back-cart {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #f4510b;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.secure {
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+    font-size: 13px;
+}
+
+
+/* =========================
+   PAYMENT MODAL
+========================= */
+
+#paymentModal {
+    width: 90%;
+    max-width: 450px;
+    border: none;
+    border-radius: 15px;
+    padding: 0;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+#paymentModal::backdrop {
+    background: rgba(0,0,0,0.55);
+}
+
+.modal-content {
+    padding: 30px;
+}
+
+.modal-title {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 24px;
+}
+
+.modal-subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.demo-badge {
+    text-align: center;
+    background: #fff3e8;
+    color: #f4510b;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   UPI APPS
+========================= */
+
+.upi-app {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.upi-app:hover {
+    border-color: #f4510b;
+    background: #fff7f2;
+}
+
+.upi-icon {
+    font-size: 24px;
+}
+
+
+/* =========================
+   PAY BUTTON
+========================= */
+
+.demo-pay-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #f4510b;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.demo-pay-btn:hover {
+    background: #d94005;
+}
+
+.cancel-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    color: #555;
+    cursor: pointer;
+}
+
+
+/* =========================
+   PROCESSING
+========================= */
+
+.processing {
+    text-align: center;
+    padding: 20px;
+}
+
+.spinner {
+    width: 45px;
+    height: 45px;
+    border: 5px solid #eee;
+    border-top: 5px solid #f4510b;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================
+   SUCCESS
+========================= */
+
+.success-icon {
+    font-size: 55px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.success-title {
+    text-align: center;
+    color: #16833b;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.success-message {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+footer span {
+    color: #f4510b;
+    font-weight: bold;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .payment-layout {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        padding: 15px 5%;
+    }
+
+    nav a {
+        margin-left: 10px;
+        font-size: 13px;
+    }
+
+    .row {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+        🍽️ Foodie
+    </div>
+
+    <nav>
+
+        <a href="restaurant.html">
+            Restaurants
+        </a>
+
+        <a href="menu.html">
+            Menu
+        </a>
+
+        <a href="cart.html">
+            Cart 🛒
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<div class="container">
+
+
+    <div class="page-title">
+
+        <h1>
+            Checkout & Payment
+        </h1>
+
+        <p>
+            Complete your order by providing your details.
+        </p>
+
+    </div>
+
+
+    <div class="payment-layout">
+
+
+        <!-- =========================
+             LEFT SIDE
+        ========================= -->
+
+        <div class="payment-box">
+
+            <h2>
+                Delivery Details
+            </h2>
+
+
+            <div class="section-title">
+                Delivery Address
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input type="text"
+                       name="fullName"
+                       placeholder="Enter your full name">
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="form-group">
+
+                    <label>
+                        Phone Number
+                    </label>
+
+                    <input type="tel"
+                           name="phoneNumber"
+                           placeholder="Enter phone number">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Pincode
+                    </label>
+
+                    <input type="text"
+                           name="pincode"
+                           placeholder="Enter pincode">
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Address
+                </label>
+
+                <textarea
+                    name="address"
+                    placeholder="House / Flat No, Street, Area"></textarea>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="form-group">
+
+                    <label>
+                        City
+                    </label>
+
+                    <input type="text"
+                           name="city"
+                           placeholder="Enter city">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        State
+                    </label>
+
+                    <input type="text"
+                           name="state"
+                           placeholder="Enter state">
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 PAYMENT FORM
+            ========================= -->
+
+            <form id="paymentForm"
+                  action="payment"
+                  method="post">
+
+
+                <div class="payment-methods">
+
+                    <div class="section-title">
+                        Select Payment Method
+                    </div>
+
+
+                    <!-- UPI -->
+
+                    <div class="payment-option">
+
+                        <input type="radio"
+                               id="upi"
+                               name="paymentMethod"
+                               value="upi"
+                               checked
+                               onclick="showCard(false)">
+
+                        <label for="upi">
+                            📱 UPI
+                        </label>
+
+                    </div>
+
+
+                    <!-- CREDIT CARD -->
+
+                    <div class="payment-option">
+
+                        <input type="radio"
+                               id="creditcard"
+                               name="paymentMethod"
+                               value="creditcard"
+                               onclick="showCard(true)">
+
+                        <label for="creditcard">
+                            💳 Credit Card
+                        </label>
+
+                    </div>
+
+
+                    <!-- DEBIT CARD -->
+
+                    <div class="payment-option">
+
+                        <input type="radio"
+                               id="debitcard"
+                               name="paymentMethod"
+                               value="debitcard"
+                               onclick="showCard(true)">
+
+                        <label for="debitcard">
+                            💳 Debit Card
+                        </label>
+
+                    </div>
+
+
+                    <!-- CASH -->
+
+                    <div class="payment-option">
+
+                        <input type="radio"
+                               id="cash"
+                               name="paymentMethod"
+                               value="cash"
+                               onclick="showCard(false)">
+
+                        <label for="cash">
+                            💵 Cash on Delivery
+                        </label>
+
+                    </div>
+
+
+                    <!-- =========================
+                         CARD DETAILS
+                    ========================= -->
+
+                    <div id="cardDetails">
+
+                        <div class="form-group">
+
+                            <label>
+                                Card Number
+                            </label>
+
+                            <input type="text"
+                                   id="cardNumber"
+                                   placeholder="XXXX XXXX XXXX XXXX">
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="form-group">
+
+                                <label>
+                                    Expiry Date
+                                </label>
+
+                                <input type="text"
+                                       id="expiry"
+                                       placeholder="MM/YY">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    CVV
+                                </label>
+
+                                <input type="password"
+                                       id="cvv"
+                                       placeholder="CVV">
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Card Holder Name
+                            </label>
+
+                            <input type="text"
+                                   id="cardHolder"
+                                   placeholder="Enter card holder name">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button type="submit"
+                        class="place-order">
+
+                    Place Order
+
+                </button>
+
+
+            </form>
+
+        </div>
+
+
+        <!-- =========================
+             RIGHT SIDE
+        ========================= -->
+
+        <div class="summary">
+
+            <h2>
+                Order Summary
+            </h2>
+
+
+            <div id="orderItems">
+                Loading cart...
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Item Total
+                </span>
+
+                <span id="itemTotal">
+                    ₹0.00
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Delivery Fee
+                </span>
+
+                <span id="deliveryFee">
+                    ₹40.00
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Tax
+                </span>
+
+                <span id="tax">
+                    ₹0.00
+                </span>
+
+            </div>
+
+
+            <div class="summary-total">
+
+                <span>
+                    Total
+                </span>
+
+                <span class="total-price"
+                      id="total">
+
+                    ₹0.00
+
+                </span>
+
+            </div>
+
+
+            <a href="cart.html"
+               class="back-cart">
+
+                ← Back to Cart
+
+            </a>
+
+
+            <div class="secure">
+
+                🔒 Demo payment — no real money is charged.
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     PAYMENT MODAL
+========================= -->
+
+<dialog id="paymentModal">
+
+    <div class="modal-content">
+
+        <div id="modalContent">
+
+            <!-- JavaScript will insert content here -->
+
+        </div>
+
+    </div>
+
+</dialog>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        © 2026 <span>Foodie</span>
+        - Food Ordering System
+    </p>
+
+</footer>
+
+
+<script>
+
+
+// ============================================
+// GLOBAL PAYMENT AMOUNT
+// ============================================
+
+let orderTotal = 0;
+
+
+// ============================================
+// SHOW / HIDE CARD DETAILS
+// ============================================
+
+function showCard(show) {
+
+    const cardDetails =
+        document.getElementById("cardDetails");
+
+    if (show) {
+
+        cardDetails.style.display = "block";
+
+    } else {
+
+        cardDetails.style.display = "none";
+
+    }
+
+}
+
+
+// ============================================
+// PAYMENT FORM SUBMIT
+// ============================================
+
+document.getElementById("paymentForm")
+.addEventListener("submit", function(event) {
+
+    // Stop normal form submission
+    event.preventDefault();
+
+
+    const paymentMethod =
+        document.querySelector(
+            'input[name="paymentMethod"]:checked'
+        ).value;
+
+
+    // =========================
+    // UPI
+    // =========================
+
+    if (paymentMethod === "upi") {
+
+        showUpiOptions();
+
+        return;
+    }
+
+
+    // =========================
+    // CREDIT / DEBIT CARD
+    // =========================
+
+    if (paymentMethod === "creditcard" ||
+        paymentMethod === "debitcard") {
+
+        if (!validateCard()) {
+
+            return;
+        }
+
+        showCardPayment();
+
+        return;
+    }
+
+
+    // =========================
+    // CASH ON DELIVERY
+    // =========================
+
+    if (paymentMethod === "cash") {
+
+        showCashConfirmation();
+
+        return;
+    }
+
+});
+
+
+// ============================================
+// UPI OPTIONS
+// ============================================
+
+function showUpiOptions() {
+
+    const modal =
+        document.getElementById("paymentModal");
+
+    const content =
+        document.getElementById("modalContent");
+
+
+    content.innerHTML = `
+
+        <h2 class="modal-title">
+            Choose UPI App
+        </h2>
+
+        <p class="modal-subtitle">
+            Select an app to make your demo payment
+        </p>
+
+        <div class="demo-badge">
+            DEMO PAYMENT — NO REAL MONEY
+        </div>
+
+
+        <button type="button"
+                class="upi-app"
+                onclick="startUpiPayment('Google Pay')">
+
+            <span class="upi-icon">
+                🟢
+            </span>
+
+            Google Pay
+
+        </button>
+
+
+        <button type="button"
+                class="upi-app"
+                onclick="startUpiPayment('PhonePe')">
+
+            <span class="upi-icon">
+                🟣
+            </span>
+
+            PhonePe
+
+        </button>
+
+
+        <button type="button"
+                class="upi-app"
+                onclick="startUpiPayment('Paytm')">
+
+            <span class="upi-icon">
+                🔵
+            </span>
+
+            Paytm
+
+        </button>
+
+
+        <button type="button"
+                class="cancel-btn"
+                onclick="closePaymentModal()">
+
+            Cancel
+
+        </button>
+
+    `;
+
+
+    modal.showModal();
+}
+
+
+// ============================================
+// START UPI PAYMENT
+// ============================================
+
+function startUpiPayment(appName) {
+
+    const content =
+        document.getElementById("modalContent");
+
+
+    content.innerHTML = `
+
+        <h2 class="modal-title">
+            ${appName}
+        </h2>
+
+        <p class="modal-subtitle">
+            Confirm your demo payment
+        </p>
+
+        <div class="demo-badge">
+            DEMO PAYMENT
+        </div>
+
+
+        <div style="
+            text-align:center;
+            margin:25px 0;
+        ">
+
+            <div style="
+                color:#777;
+                font-size:14px;
+                margin-bottom:8px;
+            ">
+                Amount to Pay
+            </div>
+
+            <div style="
+                font-size:30px;
+                font-weight:bold;
+                color:#f4510b;
+            ">
+                ₹${orderTotal.toFixed(2)}
+            </div>
+
+        </div>
+
+
+        <button type="button"
+                class="demo-pay-btn"
+                onclick="processDemoPayment('${appName}')">
+
+            Pay ₹${orderTotal.toFixed(2)}
+
+        </button>
+
+
+        <button type="button"
+                class="cancel-btn"
+                onclick="showUpiOptions()">
+
+            Back
+
+        </button>
+
+    `;
+}
+
+
+// ============================================
+// CARD PAYMENT
+// ============================================
+
+function showCardPayment() {
+
+    const method =
+        document.querySelector(
+            'input[name="paymentMethod"]:checked'
+        ).value;
+
+    const methodName =
+        method === "creditcard"
+        ? "Credit Card"
+        : "Debit Card";
+
+
+    const content =
+        document.getElementById("modalContent");
+
+
+    content.innerHTML = `
+
+        <h2 class="modal-title">
+            ${methodName} Payment
+        </h2>
+
+        <p class="modal-subtitle">
+            Confirm your demo payment
+        </p>
+
+        <div class="demo-badge">
+            DEMO PAYMENT — NO REAL MONEY
+        </div>
+
+
+        <div style="
+            text-align:center;
+            margin:25px 0;
+        ">
+
+            <div style="
+                color:#777;
+                font-size:14px;
+                margin-bottom:8px;
+            ">
+                Amount to Pay
+            </div>
+
+            <div style="
+                font-size:30px;
+                font-weight:bold;
+                color:#f4510b;
+            ">
+                ₹${orderTotal.toFixed(2)}
+            </div>
+
+        </div>
+
+
+        <button type="button"
+                class="demo-pay-btn"
+                onclick="processDemoPayment('${methodName}')">
+
+            Pay ₹${orderTotal.toFixed(2)}
+
+        </button>
+
+
+        <button type="button"
+                class="cancel-btn"
+                onclick="closePaymentModal()">
+
+            Cancel
+
+        </button>
+
+    `;
+
+
+    document.getElementById("paymentModal")
+            .showModal();
+}
+
+
+// ============================================
+// CASH CONFIRMATION
+// ============================================
+
+function showCashConfirmation() {
+
+    const content =
+        document.getElementById("modalContent");
+
+
+    content.innerHTML = `
+
+        <h2 class="modal-title">
+            Cash on Delivery
+        </h2>
+
+        <p class="modal-subtitle">
+            Confirm your order
+        </p>
+
+        <div class="demo-badge">
+            PAYMENT WILL BE MADE ON DELIVERY
+        </div>
+
+
+        <div style="
+            text-align:center;
+            margin:25px 0;
+        ">
+
+            <div style="
+                color:#777;
+                font-size:14px;
+            ">
+                Order Total
+            </div>
+
+            <div style="
+                font-size:30px;
+                font-weight:bold;
+                color:#f4510b;
+                margin-top:8px;
+            ">
+                ₹${orderTotal.toFixed(2)}
+            </div>
+
+        </div>
+
+
+        <button type="button"
+                class="demo-pay-btn"
+                onclick="submitOrder()">
+
+            Confirm Order
+
+        </button>
+
+
+        <button type="button"
+                class="cancel-btn"
+                onclick="closePaymentModal()">
+
+            Cancel
+
+        </button>
+
+    `;
+
+
+    document.getElementById("paymentModal")
+            .showModal();
+}
+
+
+// ============================================
+// DEMO PAYMENT PROCESSING
+// ============================================
+
+function processDemoPayment(methodName) {
+
+    const content =
+        document.getElementById("modalContent");
+
+
+    content.innerHTML = `
+
+        <div class="processing">
+
+            <div class="spinner"></div>
+
+            <h2>
+                Processing Payment
+            </h2>
+
+            <p style="
+                margin-top:10px;
+                color:#777;
+            ">
+                Connecting to ${methodName}...
+            </p>
+
+        </div>
+
+    `;
+
+
+    // Simulate payment processing
+    setTimeout(function() {
+
+        showPaymentSuccess(methodName);
+
+    }, 2000);
+
+}
+
+
+// ============================================
+// PAYMENT SUCCESS
+// ============================================
+
+function showPaymentSuccess(methodName) {
+
+    const content =
+        document.getElementById("modalContent");
+
+
+    content.innerHTML = `
+
+        <div class="success-icon">
+            ✅
+        </div>
+
+
+        <div class="success-title">
+            Payment Successful
+        </div>
+
+
+        <p class="success-message">
+
+            Your demo payment of
+            <strong>
+                ₹${orderTotal.toFixed(2)}
+            </strong>
+            was successful.
+
+        </p>
+
+
+        <p class="success-message"
+           style="margin-top:8px;">
+
+            Payment method:
+            <strong>${methodName}</strong>
+
+        </p>
+
+
+        <button type="button"
+                class="demo-pay-btn"
+                style="margin-top:25px;"
+                onclick="submitOrder()">
+
+            Place Order
+
+        </button>
+
+    `;
+
+}
+
+
+// ============================================
+// SUBMIT ACTUAL ORDER
+// ============================================
+
+function submitOrder() {
+
+    const modal =
+        document.getElementById("paymentModal");
+
+    modal.close();
+
+
+    // Now allow the form to reach PaymentServlet
+    document.getElementById("paymentForm")
+            .submit();
+
+}
+
+
+// ============================================
+// VALIDATE CARD
+// ============================================
+
+function validateCard() {
+
+    const cardNumber =
+        document.getElementById("cardNumber")
+        .value
+        .trim();
+
+    const expiry =
+        document.getElementById("expiry")
+        .value
+        .trim();
+
+    const cvv =
+        document.getElementById("cvv")
+        .value
+        .trim();
+
+    const cardHolder =
+        document.getElementById("cardHolder")
+        .value
+        .trim();
+
+
+    if (cardNumber === "" ||
+        expiry === "" ||
+        cvv === "" ||
+        cardHolder === "") {
+
+        alert(
+            "Please enter all card details."
+        );
+
+        return false;
+    }
+
+
+    if (cardNumber.length < 12) {
+
+        alert(
+            "Please enter a valid demo card number."
+        );
+
+        return false;
+    }
+
+
+    if (cvv.length < 3) {
+
+        alert(
+            "Please enter a valid demo CVV."
+        );
+
+        return false;
+    }
+
+
+    return true;
+}
+
+
+// ============================================
+// CLOSE MODAL
+// ============================================
+
+function closePaymentModal() {
+
+    document.getElementById("paymentModal")
+            .close();
+
+}
+
+
+// ============================================
+// LOAD CURRENT USER'S CART
+// ============================================
+
+async function loadPaymentSummary() {
+
+    try {
+
+        const response =
+            await fetch("cart?action=view");
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Failed to load cart"
+            );
+
+        }
+
+
+        const cart =
+            await response.json();
+
+
+        displayPaymentSummary(cart);
+
+    }
+    catch (error) {
+
+        console.error(error);
+
+
+        document.getElementById("orderItems")
+        .innerHTML =
+            "<p style='color:red;'>Unable to load cart.</p>";
+
+    }
+
+}
+
+
+// ============================================
+// DISPLAY CART
+// ============================================
+
+function displayPaymentSummary(cart) {
+
+    const orderItems =
+        document.getElementById("orderItems");
+
+
+    if (!cart || cart.length === 0) {
+
+        orderItems.innerHTML =
+            "<p>Your cart is empty.</p>";
+
+        return;
+
+    }
+
+
+    let itemTotal = 0;
+
+    let itemsHTML = "";
+
+
+    cart.forEach(function(item) {
+
+        itemTotal +=
+            Number(item.itemTotal);
+
+
+        itemsHTML += `
+
+            <div class="order-item">
+
+                <span>
+                    ${escapeHtml(item.itemName)}
+                    × ${item.quantity}
+                </span>
+
+                <span>
+                    ₹${Number(item.itemTotal).toFixed(2)}
+                </span>
+
+            </div>
+
+        `;
+
+    });
+
+
+    const deliveryFee = 40;
+
+    const tax =
+        itemTotal * 0.05;
+
+
+    const total =
+        itemTotal +
+        deliveryFee +
+        tax;
+
+
+    // Store globally for payment modal
+    orderTotal = total;
+
+
+    orderItems.innerHTML =
+        itemsHTML;
+
+
+    document.getElementById("itemTotal")
+        .textContent =
+        "₹" + itemTotal.toFixed(2);
+
+
+    document.getElementById("deliveryFee")
+        .textContent =
+        "₹" + deliveryFee.toFixed(2);
+
+
+    document.getElementById("tax")
+        .textContent =
+        "₹" + tax.toFixed(2);
+
+
+    document.getElementById("total")
+        .textContent =
+        "₹" + total.toFixed(2);
+
+}
+
+
+// ============================================
+// HTML ESCAPE
+// ============================================
+
+function escapeHtml(value) {
+
+    if (!value) {
+        return "";
+    }
+
+
+    return value
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+// ============================================
+// LOAD PAYMENT SUMMARY
+// ============================================
+
+loadPaymentSummary();
+
+
+// ============================================
+// INITIAL PAYMENT STATE
+// ============================================
+
+showCard(false);
+
+</script>
+
+
+</body>
+</html>

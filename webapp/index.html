@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Foodie - Good Food. Good Mood.</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fffaf5;
+            color: #252525;
+        }
+
+        /* =========================
+           NAVBAR
+           ========================= */
+
+        .navbar {
+            width: 100%;
+            height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background: rgba(255, 250, 245, 0.96);
+
+            border-bottom: 1px solid #f0e5db;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 13px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #ff6b35;
+
+            font-size: 22px;
+        }
+
+        .logo-text {
+            font-size: 25px;
+            font-weight: 800;
+            color: #222;
+        }
+
+        .logo-text span {
+            color: #ff6b35;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .login-btn {
+            text-decoration: none;
+
+            padding: 11px 20px;
+
+            border: 1px solid #ff6b35;
+            border-radius: 10px;
+
+            color: #ff6b35;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #fff0e9;
+        }
+
+        .signup-btn {
+            text-decoration: none;
+
+            padding: 12px 21px;
+
+            border-radius: 10px;
+
+            background: #ff6b35;
+            color: white;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .signup-btn:hover {
+            background: #e95722;
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================
+           HERO SECTION
+           ========================= */
+
+        .hero {
+            min-height: 650px;
+
+            padding: 70px 7% 80px;
+
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+
+            align-items: center;
+
+            gap: 55px;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    #fff1e6 0,
+                    transparent 35%
+                ),
+                #fffaf5;
+        }
+
+        .hero-content {
+            max-width: 570px;
+        }
+
+        .small-tag {
+            display: inline-flex;
+
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 14px;
+
+            border-radius: 30px;
+
+            background: #fff0e8;
+            color: #e95722;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            margin-bottom: 22px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(48px, 6vw, 78px);
+
+            line-height: 0.98;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 25px;
+
+            color: #1f1f1f;
+        }
+
+        .hero-content h1 span {
+            color: #ff6b35;
+        }
+
+        .hero-content p {
+            color: #666;
+
+            font-size: 18px;
+
+            line-height: 1.7;
+
+            max-width: 500px;
+
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            margin-bottom: 38px;
+        }
+
+        .primary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 15px 25px;
+
+            border-radius: 12px;
+
+            background: #ff6b35;
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .primary-btn:hover {
+            background: #e95722;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.22);
+        }
+
+        .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 15px 25px;
+
+            border-radius: 12px;
+
+            background: white;
+
+            border: 1px solid #e4d9d0;
+
+            color: #333;
+
+            text-decoration: none;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .secondary-btn:hover {
+            border-color: #ff6b35;
+            color: #ff6b35;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 35px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .stat strong {
+            font-size: 21px;
+            color: #222;
+        }
+
+        .stat span {
+            font-size: 13px;
+            color: #888;
+        }
+
+
+        /* =========================
+           HERO IMAGE
+           ========================= */
+
+        .hero-image-wrapper {
+            position: relative;
+
+            width: 100%;
+
+            border-radius: 32px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 30px 70px rgba(75, 46, 28, 0.18);
+
+            background: #eadfd5;
+        }
+
+        .hero-image {
+            width: 100%;
+
+            display: block;
+
+            aspect-ratio: 16 / 10;
+
+            object-fit: cover;
+        }
+
+        .floating-card {
+            position: absolute;
+
+            left: 25px;
+            bottom: 25px;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 13px 17px;
+
+            background: rgba(255, 255, 255, 0.95);
+
+            border-radius: 15px;
+
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .floating-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #fff0e8;
+
+            font-size: 20px;
+        }
+
+        .floating-card strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .floating-card span {
+            display: block;
+
+            margin-top: 3px;
+
+            font-size: 12px;
+            color: #888;
+        }
+
+
+        /* =========================
+           FEATURES
+           ========================= */
+
+        .features-section {
+            padding: 90px 7%;
+
+            background: white;
+
+            text-align: center;
+        }
+
+        .section-label {
+            color: #ff6b35;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 38px;
+
+            color: #222;
+
+            margin-bottom: 12px;
+        }
+
+        .section-description {
+            max-width: 600px;
+
+            margin: 0 auto 50px;
+
+            color: #777;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+        }
+
+        .features {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 25px;
+
+            max-width: 1100px;
+
+            margin: auto;
+        }
+
+        .feature-card {
+            padding: 32px 28px;
+
+            background: #fffaf5;
+
+            border: 1px solid #f1e7de;
+
+            border-radius: 20px;
+
+            text-align: left;
+
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 18px 40px rgba(50, 35, 25, 0.08);
+        }
+
+        .feature-icon {
+            width: 54px;
+            height: 54px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background: #fff0e8;
+
+            font-size: 25px;
+
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 19px;
+
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #777;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           CUISINES
+           ========================= */
+
+        .cuisine-section {
+            padding: 90px 7%;
+
+            background: #fffaf5;
+
+            text-align: center;
+        }
+
+        .cuisine-list {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 13px;
+
+            max-width: 850px;
+
+            margin: auto;
+        }
+
+        .cuisine {
+            padding: 12px 18px;
+
+            background: white;
+
+            border: 1px solid #eadfd5;
+
+            border-radius: 30px;
+
+            color: #555;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .cuisine:hover {
+            border-color: #ff6b35;
+
+            color: #ff6b35;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           CTA
+           ========================= */
+
+        .cta-section {
+            padding: 80px 7%;
+        }
+
+        .cta-box {
+            max-width: 1150px;
+
+            margin: auto;
+
+            padding: 55px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2b211c,
+                    #49372b
+                );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+        .cta-box h2 {
+            font-size: 36px;
+
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: #d7cdc6;
+
+            max-width: 550px;
+
+            line-height: 1.6;
+        }
+
+        .cta-box .primary-btn {
+            white-space: nowrap;
+        }
+
+
+        /* =========================
+           FOOTER
+           ========================= */
+
+        footer {
+            padding: 35px 7%;
+
+            background: #211a16;
+
+            color: #aaa;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .footer-logo {
+            color: white;
+
+            font-size: 20px;
+
+            font-weight: 800;
+        }
+
+        .footer-logo span {
+            color: #ff6b35;
+        }
+
+        footer p {
+            font-size: 13px;
+        }
+
+        .footer-links {
+            display: flex;
+
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+
+            text-decoration: none;
+
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+           ========================= */
+
+        @media (max-width: 950px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+
+                padding-top: 55px;
+            }
+
+            .hero-content {
+                max-width: 700px;
+            }
+
+            .hero-image-wrapper {
+                max-width: 750px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+            }
+
+            .cta-box {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .logo-text {
+                font-size: 21px;
+            }
+
+            .login-btn {
+                display: none;
+            }
+
+            .signup-btn {
+                padding: 10px 14px;
+
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 45px 5% 60px;
+            }
+
+            .hero-content h1 {
+                font-size: 52px;
+
+                letter-spacing: -2px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+            .hero-stats {
+                gap: 20px;
+            }
+
+            .hero-image-wrapper {
+                border-radius: 22px;
+            }
+
+            .floating-card {
+                left: 15px;
+                bottom: 15px;
+            }
+
+            .features-section,
+            .cuisine-section {
+                padding: 70px 5%;
+            }
+
+            .section-title {
+                font-size: 31px;
+            }
+
+            .cta-section {
+                padding: 60px 5%;
+            }
+
+            .cta-box {
+                padding: 35px 25px;
+            }
+
+            .cta-box h2 {
+                font-size: 29px;
+            }
+
+            footer {
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+     ========================= -->
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+
+        <div class="logo-icon">
+            🍴
+        </div>
+
+        <div class="logo-text">
+            Food<span>ie</span>
+        </div>
+
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="#features">
+            Why Foodie
+        </a>
+
+        <a href="#cuisines">
+            Cuisines
+        </a>
+
+        <a href="restaurant.html">
+            Restaurants
+        </a>
+
+    </nav>
+
+
+    <div class="nav-buttons">
+
+        <a href="login.html" class="login-btn">
+            Login
+        </a>
+
+        <a href="signup.html" class="signup-btn">
+            Sign Up
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+     ========================= -->
+
+<main>
+
+<section class="hero">
+
+
+    <div class="hero-content">
+
+        <div class="small-tag">
+            ✦ Your next meal starts here
+        </div>
+
+
+        <h1>
+            Good food.
+            <br>
+            <span>Good mood.</span>
+        </h1>
+
+
+        <p>
+            Discover delicious meals from restaurants around you,
+            explore your favourite dishes, add them to your cart,
+            and enjoy a simple ordering experience.
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a href="restaurant.html"
+               class="primary-btn">
+                Explore Restaurants →
+            </a>
+
+            <a href="signup.html"
+               class="secondary-btn">
+                Create Account
+            </a>
+
+        </div>
+
+
+        <div class="hero-stats">
+
+            <div class="stat">
+
+                <strong>10+</strong>
+
+                <span>Restaurants</span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>35+</strong>
+
+                <span>Dishes</span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>Easy</strong>
+
+                <span>Ordering</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="hero-image-wrapper">
+
+        <img
+            src="images/foodie-hero.png"
+            alt="A variety of delicious food"
+            class="hero-image"
+        >
+
+
+        <div class="floating-card">
+
+            <div class="floating-icon">
+                🥘
+            </div>
+
+            <div>
+
+                <strong>Something delicious?</strong>
+
+                <span>Let's find your next favourite.</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     FEATURES
+     ========================= -->
+
+<section class="features-section"
+         id="features">
+
+    <div class="section-label">
+        Simple &amp; convenient
+    </div>
+
+    <h2 class="section-title">
+        Everything you need to order
+    </h2>
+
+    <p class="section-description">
+        Foodie keeps the ordering experience simple,
+        from discovering restaurants to placing your order.
+    </p>
+
+
+    <div class="features">
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🔎
+            </div>
+
+            <h3>
+                Explore Restaurants
+            </h3>
+
+            <p>
+                Browse available restaurants and discover
+                different cuisines and dishes.
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🛒
+            </div>
+
+            <h3>
+                Easy Cart
+            </h3>
+
+            <p>
+                Add your favourite dishes to your cart,
+                change quantities, or remove items whenever
+                you want.
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                💳
+            </div>
+
+            <h3>
+                Simple Checkout
+            </h3>
+
+            <p>
+                Review your order, select a payment method,
+                and place your order through the existing
+                checkout flow.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CUISINES
+     ========================= -->
+
+<section class="cuisine-section"
+         id="cuisines">
+
+    <div class="section-label">
+        Explore your cravings
+    </div>
+
+    <h2 class="section-title">
+        What are you hungry for?
+    </h2>
+
+    <p class="section-description">
+        Explore different kinds of food available
+        through the restaurants in your Foodie application.
+    </p>
+
+
+    <div class="cuisine-list">
+
+        <div class="cuisine">
+            🍛 Indian
+        </div>
+
+        <div class="cuisine">
+            🍕 Pizza
+        </div>
+
+        <div class="cuisine">
+            🍔 Burgers
+        </div>
+
+        <div class="cuisine">
+            🍜 Noodles
+        </div>
+
+        <div class="cuisine">
+            🥗 Healthy
+        </div>
+
+        <div class="cuisine">
+            🥞 Breakfast
+        </div>
+
+        <div class="cuisine">
+            🍗 Chicken
+        </div>
+
+        <div class="cuisine">
+            🥘 South Indian
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CTA
+     ========================= -->
+
+<section class="cta-section">
+
+    <div class="cta-box">
+
+        <div>
+
+            <h2>
+                Ready for something delicious?
+            </h2>
+
+            <p>
+                Create your Foodie account and start
+                exploring restaurants and dishes.
+            </p>
+
+        </div>
+
+
+        <a href="signup.html"
+           class="primary-btn">
+            Get Started →
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+     ========================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        Food<span>ie</span>
+    </div>
+
+    <p>
+        © 2026 Foodie. Built as a Java Full Stack project.
+    </p>
+
+    <div class="footer-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="restaurant.html">
+            Restaurants
+        </a>
+
+        <a href="cart.html">
+            Cart
+        </a>
+
+        <a href="login.html">
+            Login
+        </a>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

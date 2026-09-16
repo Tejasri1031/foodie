@@ -1,0 +1,677 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Foodie - Cart</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background-color: #fff7f2;
+        color: #222;
+    }
+
+    header {
+        background-color: white;
+        padding: 18px 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: #f4510b;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #333;
+        margin-left: 25px;
+        font-size: 15px;
+    }
+
+    nav a:hover {
+        color: #f4510b;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1100px;
+        margin: 40px auto;
+    }
+
+    .page-title {
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+
+    .cart-layout {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 30px;
+    }
+
+    .cart-items {
+        background-color: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .cart-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .cart-item:last-child {
+        border-bottom: none;
+    }
+
+    .food-image {
+        width: 120px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .food-details {
+        flex: 1;
+    }
+
+    .food-details h3 {
+        font-size: 19px;
+        margin-bottom: 7px;
+    }
+
+    .food-details p {
+        color: #777;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .price {
+        color: #f4510b;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .quantity {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .quantity form {
+        display: inline;
+    }
+
+    .quantity button {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #f4510b;
+        background-color: white;
+        color: #f4510b;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    .quantity button:hover {
+        background-color: #f4510b;
+        color: white;
+    }
+
+    .quantity span {
+        font-weight: bold;
+        min-width: 20px;
+        text-align: center;
+    }
+
+    .remove {
+        border: none;
+        background: none;
+        color: #e53935;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .remove:hover {
+        text-decoration: underline;
+    }
+
+    .summary {
+        background-color: white;
+        border-radius: 12px;
+        padding: 25px;
+        height: fit-content;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .summary h2 {
+        margin-bottom: 25px;
+    }
+
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        color: #555;
+    }
+
+    .summary-total {
+        border-top: 1px solid #ddd;
+        padding-top: 18px;
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .total-price {
+        color: #f4510b;
+    }
+
+    .checkout-btn {
+        display: block;
+        width: 100%;
+        margin-top: 25px;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        background-color: #f4510b;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .checkout-btn:hover {
+        background-color: #d94105;
+    }
+
+    .continue-btn {
+        display: block;
+        text-align: center;
+        margin-top: 18px;
+        color: #f4510b;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .empty-cart {
+        text-align: center;
+        background-color: white;
+        padding: 70px 20px;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .empty-cart .icon {
+        font-size: 55px;
+        margin-bottom: 15px;
+    }
+
+    .empty-cart h2 {
+        margin-bottom: 10px;
+    }
+
+    .empty-cart p {
+        color: #777;
+        margin-bottom: 25px;
+    }
+
+    .browse-btn {
+        display: inline-block;
+        background-color: #f4510b;
+        color: white;
+        text-decoration: none;
+        padding: 12px 25px;
+        border-radius: 7px;
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+
+        header {
+            padding: 15px 5%;
+        }
+
+        nav a {
+            margin-left: 10px;
+            font-size: 13px;
+        }
+
+        .cart-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .cart-item {
+            flex-wrap: wrap;
+        }
+
+        .food-image {
+            width: 100px;
+            height: 80px;
+        }
+
+        .quantity {
+            margin-left: 120px;
+        }
+
+    }
+
+</style>
+
+</head><body><header><div class="logo">
+    🍽️ Foodie
+</div>
+
+<nav>
+
+    <a href="restaurant.html">
+        Restaurants
+    </a>
+
+    <a href="menu.html">
+        Menu
+    </a>
+
+    <a href="cart.html">
+        Cart 🛒
+    </a>
+
+</nav>
+
+</header><div class="container"><h1 class="page-title">
+    Your Cart 🛒
+</h1>
+
+
+<div id="cartContainer">
+
+    <p style="text-align:center;">
+        Loading cart...
+    </p>
+
+</div>
+
+</div><script>
+
+
+async function loadCart() {
+
+    try {
+
+        const response =
+            await fetch("cart?action=view");
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Failed to load cart"
+            );
+        }
+
+        const cart =
+            await response.json();
+
+        displayCart(cart);
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById(
+            "cartContainer"
+        ).innerHTML =
+
+            "<p style='text-align:center;color:red;'>" +
+            "Unable to load cart." +
+            "</p>";
+    }
+}
+
+
+
+function displayCart(cart) {
+
+    const container =
+        document.getElementById(
+            "cartContainer"
+        );
+
+
+    if (!cart || cart.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty-cart">
+
+                <div class="icon">
+                    🛒
+                </div>
+
+                <h2>
+                    Your cart is empty
+                </h2>
+
+                <p>
+                    Add some delicious food to your cart.
+                </p>
+
+                <a href="restaurant.html"
+                   class="browse-btn">
+
+                    Browse Restaurants
+
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    let itemTotal = 0;
+
+    let itemsHTML = "";
+
+
+    cart.forEach(function(item) {
+
+        itemTotal +=
+            Number(item.itemTotal);
+
+
+        itemsHTML += `
+
+            <div class="cart-item">
+
+                <img src="images/${getImageName(item.itemName)}"
+                     class="food-image"
+                     alt="${escapeHtml(item.itemName)}">
+
+
+                <div class="food-details">
+
+                    <h3>
+                        ${escapeHtml(item.itemName)}
+                    </h3>
+
+                    <p>
+                        ${escapeHtml(
+                            item.description || ""
+                        )}
+                    </p>
+
+                    <span class="price">
+                        ₹${Number(item.price).toFixed(2)}
+                    </span>
+
+                </div>
+
+
+                <div class="quantity">
+
+                    <form method="post"
+                          action="cart">
+
+                        <input type="hidden"
+                               name="action"
+                               value="minus">
+
+                        <input type="hidden"
+                               name="menuId"
+                               value="${item.menuId}">
+
+                        <button type="submit">
+                            −
+                        </button>
+
+                    </form>
+
+
+                    <span>
+                        ${item.quantity}
+                    </span>
+
+
+                    <form method="post"
+                          action="cart">
+
+                        <input type="hidden"
+                               name="action"
+                               value="plus">
+
+                        <input type="hidden"
+                               name="menuId"
+                               value="${item.menuId}">
+
+                        <button type="submit">
+                            +
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <form method="post"
+                      action="cart">
+
+                    <input type="hidden"
+                           name="action"
+                           value="remove">
+
+                    <input type="hidden"
+                           name="menuId"
+                           value="${item.menuId}">
+
+                    <button type="submit"
+                            class="remove">
+
+                        Remove
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        `;
+
+    });
+
+
+    /*
+     * These values are currently calculated
+     * on the frontend.
+     *
+     * Later we can move delivery fee and tax
+     * calculation completely to the backend.
+     */
+
+    const deliveryFee = 40;
+
+    const tax =
+        itemTotal * 0.05;
+
+    const total =
+        itemTotal +
+        deliveryFee +
+        tax;
+
+
+    container.innerHTML = `
+
+        <div class="cart-layout">
+
+
+            <div class="cart-items">
+
+                ${itemsHTML}
+
+            </div>
+
+
+            <div class="summary">
+
+                <h2>
+                    Order Summary
+                </h2>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Item Total
+                    </span>
+
+                    <span>
+                        ₹${itemTotal.toFixed(2)}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Delivery Fee
+                    </span>
+
+                    <span>
+                        ₹${deliveryFee.toFixed(2)}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Tax
+                    </span>
+
+                    <span>
+                        ₹${tax.toFixed(2)}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span class="total-price">
+                        ₹${total.toFixed(2)}
+                    </span>
+
+                </div>
+
+
+                <a href="payment.html"
+                   class="checkout-btn">
+
+                    Proceed to Checkout
+
+                </a>
+
+
+                <a href="restaurant.html"
+                   class="continue-btn">
+
+                    ← Continue Shopping
+
+                </a>
+
+            </div>
+
+        </div>
+
+    `;
+}
+
+
+
+function getImageName(itemName) {
+
+    const name =
+        itemName.toLowerCase();
+
+
+    if (
+        name.includes("chicken") &&
+        name.includes("biryani")
+    ) {
+
+        return "chicken-biryani.jpg";
+    }
+
+
+    if (
+        name.includes("mutton") &&
+        name.includes("biryani")
+    ) {
+
+        return "mutton-biryani.jpg";
+    }
+
+
+    if (
+        name.includes("egg") &&
+        name.includes("biryani")
+    ) {
+
+        return "egg-biryani.jpg";
+    }
+
+
+    return "default-food.jpg";
+}
+
+
+
+function escapeHtml(value) {
+
+    if (!value) {
+        return "";
+    }
+
+    return value
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+loadCart();
+
+</script></body></html>

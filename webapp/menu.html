@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Foodie - Menu</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#fff8f3;color:#222;line-height:1.5}
+header{background:#f4510b;color:#fff;padding:18px 60px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:30px;font-weight:700}
+nav a{color:#fff;text-decoration:none;margin-left:25px;font-size:16px}
+nav a:hover{text-decoration:underline}
+.page-title{text-align:center;padding:35px 20px 20px}
+.page-title h1{color:#f4510b;font-size:34px;margin:0}
+.page-title p{color:#666;margin-top:8px}
+.restaurant-section{max-width:1200px;margin:35px auto;padding:0 20px}
+.restaurant-name{font-size:26px;color:#333;margin-bottom:18px;border-left:5px solid #f4510b;padding-left:12px}
+.menu-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.food-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.10);transition:.3s}
+.food-card:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.food-card img{display:block;width:100%;height:190px;object-fit:cover}
+.food-info{padding:15px}
+.food-info h3{font-size:19px;margin-bottom:8px}
+.food-info p{color:#777;font-size:14px;margin-bottom:12px;min-height:42px}
+.price{color:#f4510b;font-size:18px;font-weight:700}
+.add-btn{float:right;background:#f4510b;color:#fff;border:0;padding:8px 15px;border-radius:6px;cursor:pointer;font-weight:700}
+.add-btn:hover{background:#d94306}
+.add-btn:disabled{background:#999;cursor:not-allowed}
+footer{margin-top:50px;background:#222;color:#fff;text-align:center;padding:20px}
+
+@media(max-width:900px){
+    .menu-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr))
+    }
+}
+
+@media(max-width:600px){
+    header{
+        padding:15px 20px;
+        flex-direction:column;
+        gap:12px
+    }
+
+    nav a{
+        margin:0 8px
+    }
+
+    .page-title h1{
+        font-size:28px
+    }
+
+    .menu-grid{
+        grid-template-columns:1fr
+    }
+
+    .restaurant-section{
+        padding:0 15px
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">Foodie</div>
+
+    <nav>
+
+        <a href="restaurant.html">Restaurants</a>
+
+        <a href="menu.html">Menu</a>
+
+        <a href="cart.html">Cart</a>
+
+    </nav>
+
+</header>
+
+
+<div class="page-title">
+
+    <h1>Our Menu</h1>
+
+    <p>Choose your favourite food and enjoy a delicious meal.</p>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- 1. BIRYANI HOUSE -->
+<!-- ================================================= -->
+
+<section class="restaurant-section restaurant-menu"
+         data-restaurant="BiryaniHouse"
+         data-restaurant-id="1">
+
+    <h2 class="restaurant-name">🍚 Biryani House</h2>
+
+    <div class="menu-grid">
+
+        <div class="food-card">
+
+            <img src="images/chicken-biryani.jpg">
+
+            <div class="food-info">
+
+                <h3>Chicken Biryani</h3>
+
+                <p>Fragrant basmati rice cooked with tender chicken and spices.</p>
+
+                <span class="price">₹220</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/mutton-biryani.jpg">
+
+            <div class="food-info">
+
+                <h3>Mutton Biryani</h3>
+
+                <p>Rich and flavorful biryani with tender mutton pieces.</p>
+
+                <span class="price">₹280</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/egg-biryani.jpg">
+
+            <div class="food-info">
+
+                <h3>Egg Biryani</h3>
+
+                <p>Spiced basmati rice served with delicious boiled eggs.</p>
+
+                <span class="price">₹180</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- 2. ANDHRA SPICE KITCHEN -->
+<!-- ================================================= -->
+
+<section class="restaurant-section restaurant-menu"
+         data-restaurant="AndhraSpiceKitchen"
+         data-restaurant-id="2">
+
+    <h2 class="restaurant-name">🌶️ Andhra Spice Kitchen</h2>
+
+    <div class="menu-grid">
+
+        <div class="food-card">
+
+            <img src="images/chicken-curry.jpg">
+
+            <div class="food-info">
+
+                <h3>Chicken Curry</h3>
+
+                <p>Traditional spicy chicken curry with aromatic spices.</p>
+
+                <span class="price">₹200</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/egg-curry.jpg">
+
+            <div class="food-info">
+
+                <h3>Egg Curry</h3>
+
+                <p>Boiled eggs cooked in a flavorful masala gravy.</p>
+
+                <span class="price">₹150</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/chicken-fry.jpg">
+
+            <div class="food-info">
+
+                <h3>Chicken Fry</h3>
+
+                <p>Crispy and spicy chicken fried with Indian spices.</p>
+
+                <span class="price">₹190</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- 3. SOUTH INDIAN TIFFINS -->
+<!-- ================================================= -->
+
+<section class="restaurant-section restaurant-menu"
+         data-restaurant="SouthIndianTiffins"
+         data-restaurant-id="3">
+
+    <h2 class="restaurant-name">🥞 South Indian Tiffins</h2>
+
+    <div class="menu-grid">
+
+        <div class="food-card">
+
+            <img src="images/masala-dosa.jpg">
+
+            <div class="food-info">
+
+                <h3>Masala Dosa</h3>
+
+                <p>Crispy dosa filled with delicious potato masala.</p>
+
+                <span class="price">₹90</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/plain-dosa.jpg">
+
+            <div class="food-info">
+
+                <h3>Plain Dosa</h3>
+
+                <p>Golden crispy South Indian dosa served with chutney.</p>
+
+                <span class="price">₹70</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/idli.jpg">
+
+            <div class="food-info">
+
+                <h3>Idli</h3>
+
+                <p>Soft steamed idlis served with sambar and chutney.</p>
+
+                <span class="price">₹60</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/upma.jpg">
+
+            <div class="food-info">
+
+                <h3>Upma</h3>
+
+                <p>Healthy and tasty South Indian breakfast.</p>
+
+                <span class="price">₹60</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/poori.jpg">
+
+            <div class="food-info">
+
+                <h3>Poori</h3>
+
+                <p>Fluffy deep-fried puris served with potato curry.</p>
+
+                <span class="price">₹80</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- 4. TANDOORI JUNCTION -->
+<!-- ================================================= -->
+
+<section class="restaurant-section restaurant-menu"
+         data-restaurant="TandooriJunction"
+         data-restaurant-id="4">
+
+    <h2 class="restaurant-name">🔥 Tandoori Junction</h2>
+
+    <div class="menu-grid">
+
+        <div class="food-card">
+
+            <img src="images/tandoori-chicken.jpg">
+
+            <div class="food-info">
+
+                <h3>Tandoori Chicken</h3>
+
+                <p>Juicy chicken marinated with aromatic tandoori spices.</p>
+
+                <span class="price">₹240</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/chicken-tikka.jpg">
+
+            <div class="food-info">
+
+                <h3>Chicken Tikka</h3>
+
+                <p>Tender grilled chicken pieces with smoky flavors.</p>
+
+                <span class="price">₹220</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/chicken-fry.jpg">
+
+            <div class="food-info">
+
+                <h3>Chicken Fry</h3>
+
+                <p>Spicy crispy chicken prepared fresh.</p>
+
+                <span class="price">₹190</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- 5. PIZZA CORNER -->
+<!-- ================================================= -->
+
+<section class="restaurant-section restaurant-menu"
+         data-restaurant="PizzaCorner"
+         data-restaurant-id="5">
+
+    <h2 class="restaurant-name">🍕 Pizza Corner</h2>
+
+    <div class="menu-grid">
+
+        <div class="food-card">
+
+            <img src="images/chicken-pizza.jpg">
+
+            <div class="food-info">
+
+                <h3>Chicken Pizza</h3>
+
+                <p>Cheesy pizza topped with delicious chicken.</p>
+
+                <span class="price">₹250</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/veg-pizza.jpg">
+
+            <div class="food-info">
+
+                <h3>Veg Pizza</h3>
+
+                <p>Fresh vegetables, cheese and classic pizza sauce.</p>
+
+                <span class="price">₹220</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/paneer-pizza.jpg">
+
+            <div class="food-info">
+
+                <h3>Paneer Pizza</h3>
+
+                <p>Cheesy pizza topped with spicy paneer.</p>
+
+                <span class="price">₹240</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- 6. BURGER HUB -->
+<!-- ================================================= -->
+
+<section class="restaurant-section restaurant-menu"
+         data-restaurant="BurgerHub"
+         data-restaurant-id="6">
+
+    <h2 class="restaurant-name">🍔 Burger Hub</h2>
+
+    <div class="menu-grid">
+
+        <div class="food-card">
+
+            <img src="images/chicken-burger.jpg">
+
+            <div class="food-info">
+
+                <h3>Chicken Burger</h3>
+
+                <p>Juicy chicken patty with fresh vegetables and cheese.</p>
+
+                <span class="price">₹160</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/cheese-burger.jpg">
+
+            <div class="food-info">
+
+                <h3>Cheese Burger</h3>
+
+                <p>Classic burger loaded with melted cheese.</p>
+
+                <span class="price">₹150</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/crispy-chicken-burger.jpg">
+
+            <div class="food-info">
+
+                <h3>Crispy Chicken Burger</h3>
+
+                <p>Crispy chicken fillet with creamy sauce and lettuce.</p>
+
+                <span class="price">₹180</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- 7. PASTA POINT -->
+<!-- ================================================= -->
+
+<section class="restaurant-section restaurant-menu"
+         data-restaurant="PastaPoint"
+         data-restaurant-id="7">
+
+    <h2 class="restaurant-name">🍝 Pasta Point</h2>
+
+    <div class="menu-grid">
+
+        <div class="food-card">
+
+            <img src="images/red-sauce-pasta.jpg">
+
+            <div class="food-info">
+
+                <h3>Red Sauce Pasta</h3>
+
+                <p>Pasta cooked in rich tomato sauce with herbs.</p>
+
+                <span class="price">₹170</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/white-sauce-pasta.jpg">
+
+            <div class="food-info">
+
+                <h3>White Sauce Pasta</h3>
+
+                <p>Creamy pasta prepared with rich white sauce.</p>
+
+                <span class="price">₹190</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/spaghetti.jpg">
+
+            <div class="food-info">
+
+                <h3>Spaghetti</h3>
+
+                <p>Classic spaghetti tossed with flavorful sauce.</p>
+
+                <span class="price">₹180</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- 8. SNACK STATION -->
+<!-- ================================================= -->
+
+<section class="restaurant-section restaurant-menu"
+         data-restaurant="SnackStation"
+         data-restaurant-id="8">
+
+    <h2 class="restaurant-name">🍟 Snack Station</h2>
+
+    <div class="menu-grid">
+
+        <div class="food-card">
+
+            <img src="images/french-fries.jpg">
+
+            <div class="food-info">
+
+                <h3>French Fries</h3>
+
+                <p>Crispy golden fries seasoned with special spices.</p>
+
+                <span class="price">₹100</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/chicken-nuggets.jpg">
+
+            <div class="food-info">
+
+                <h3>Chicken Nuggets</h3>
+
+                <p>Crispy golden chicken nuggets served with dip.</p>
+
+                <span class="price">₹140</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/grilled-sandwich.jpg">
+
+            <div class="food-info">
+
+                <h3>Grilled Sandwich</h3>
+
+                <p>Grilled sandwich filled with delicious vegetables.</p>
+
+                <span class="price">₹120</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- 9. ASIAN BOWL -->
+<!-- ================================================= -->
+
+<section class="restaurant-section restaurant-menu"
+         data-restaurant="AsianBowl"
+         data-restaurant-id="9">
+
+    <h2 class="restaurant-name">🥢 Asian Bowl</h2>
+
+    <div class="menu-grid">
+
+        <div class="food-card">
+
+            <img src="images/momos.jpg">
+
+            <div class="food-info">
+
+                <h3>Momos</h3>
+
+                <p>Soft steamed momos served with spicy chutney.</p>
+
+                <span class="price">₹130</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/noodles.jpg">
+
+            <div class="food-info">
+
+                <h3>Noodles</h3>
+
+                <p>Stir-fried noodles tossed with fresh vegetables.</p>
+
+                <span class="price">₹150</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/korean-rice-cakes.jpg">
+
+            <div class="food-info">
+
+                <h3>Korean Rice Cakes</h3>
+
+                <p>Soft rice cakes coated in a spicy Korean sauce.</p>
+
+                <span class="price">₹180</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/sushi.jpg">
+
+            <div class="food-info">
+
+                <h3>Sushi</h3>
+
+                <p>Fresh sushi rolls with delicious fillings.</p>
+
+                <span class="price">₹250</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/kimbap.jpg">
+
+            <div class="food-info">
+
+                <h3>Kimbap</h3>
+
+                <p>Korean rice rolls filled with vegetables and egg.</p>
+
+                <span class="price">₹200</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- 10. FUSION KITCHEN -->
+<!-- ================================================= -->
+
+<section class="restaurant-section restaurant-menu"
+         data-restaurant="FusionKitchen"
+         data-restaurant-id="10">
+
+    <h2 class="restaurant-name">✨ Fusion Kitchen</h2>
+
+    <div class="menu-grid">
+
+        <div class="food-card">
+
+            <img src="images/paneer-burger.jpg">
+
+            <div class="food-info">
+
+                <h3>Paneer Burger</h3>
+
+                <p>Spicy paneer patty with fresh vegetables and sauce.</p>
+
+                <span class="price">₹170</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/mushroom-pizza.jpg">
+
+            <div class="food-info">
+
+                <h3>Mushroom Pizza</h3>
+
+                <p>Cheesy pizza topped with fresh mushrooms.</p>
+
+                <span class="price">₹230</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/cheese-maggie.jpg">
+
+            <div class="food-info">
+
+                <h3>Cheese Maggi</h3>
+
+                <p>Hot and spicy Maggi noodles topped with melted cheese.</p>
+
+                <span class="price">₹100</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img src="images/soupy-mutton-curry.jpg">
+
+            <div class="food-info">
+
+                <h3>Soupy Mutton Curry</h3>
+
+                <p>Rich mutton curry with a delicious soupy gravy.</p>
+
+                <span class="price">₹260</span>
+
+                <button class="add-btn">Add</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- DATABASE + CART JAVASCRIPT -->
+<!-- ================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // ============================================
+    // GET APPLICATION CONTEXT PATH
+    // Example: /DAO
+    // ============================================
+
+    const contextPath =
+        window.location.pathname.substring(
+            0,
+            window.location.pathname.indexOf("/", 1)
+        );
+
+
+    // ============================================
+    // GET RESTAURANT FROM URL
+    // ============================================
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+    const selectedRestaurant =
+        params.get("restaurant");
+
+
+    // ============================================
+    // GET ALL RESTAURANT SECTIONS
+    // ============================================
+
+    const menus =
+        document.querySelectorAll(".restaurant-menu");
+
+
+    // ============================================
+    // SHOW ONLY SELECTED RESTAURANT
+    // ============================================
+
+    if (selectedRestaurant) {
+
+        menus.forEach(function (menu) {
+
+            if (
+                menu.dataset.restaurant !==
+                selectedRestaurant
+            ) {
+
+                menu.style.display = "none";
+
+            } else {
+
+                menu.style.display = "block";
+
+            }
+
+        });
+
+    }
+
+
+    // ============================================
+    // LOAD MENU FROM DATABASE
+    // ============================================
+
+    menus.forEach(function (restaurantSection) {
+
+        const restaurantId =
+            restaurantSection.dataset.restaurantId;
+
+
+        if (!restaurantId) {
+            return;
+        }
+
+
+        fetch(
+            contextPath +
+            "/menu?restaurantId=" +
+            restaurantId
+        )
+
+        .then(function (response) {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "MenuServlet returned HTTP " +
+                    response.status
+                );
+
+            }
+
+            return response.json();
+
+        })
+
+        .then(function (menuItems) {
+
+            console.log(
+                "Restaurant ID:",
+                restaurantId
+            );
+
+            console.log(
+                "Menu items:",
+                menuItems
+            );
+
+
+            // ========================================
+            // GET FOOD CARDS
+            // ========================================
+
+            const foodCards =
+                restaurantSection.querySelectorAll(
+                    ".food-card"
+                );
+
+
+            foodCards.forEach(function (card) {
+
+                const itemNameElement =
+                    card.querySelector("h3");
+
+                const addButton =
+                    card.querySelector(".add-btn");
+
+
+                if (
+                    !itemNameElement ||
+                    !addButton
+                ) {
+
+                    return;
+
+                }
+
+
+                const itemName =
+                    itemNameElement.textContent.trim();
+
+
+                // ====================================
+                // FIND ITEM FROM DATABASE
+                // ====================================
+
+                const databaseItem =
+                    menuItems.find(function (item) {
+
+                        return (
+                            item.itemName ===
+                            itemName
+                        );
+
+                    });
+
+
+                if (!databaseItem) {
+
+                    console.error(
+                        "Item not found:",
+                        itemName
+                    );
+
+                    addButton.disabled = true;
+
+                    addButton.textContent =
+                        "Unavailable";
+
+                    return;
+
+                }
+
+
+                // ====================================
+                // STORE DATABASE MENU ID
+                // ====================================
+
+                addButton.dataset.menuId =
+                    databaseItem.menuId;
+
+
+                console.log(
+                    itemName +
+                    " -> menuId = " +
+                    databaseItem.menuId
+                );
+
+
+                // ====================================
+                // ADD BUTTON
+                // ====================================
+
+                addButton.addEventListener(
+                    "click",
+                    function () {
+
+                        const menuId =
+                            this.dataset.menuId;
+
+
+                        console.log(
+                            "Adding menuId:",
+                            menuId
+                        );
+
+
+                        if (!menuId) {
+
+                            alert(
+                                "Menu ID not found."
+                            );
+
+                            return;
+
+                        }
+
+
+                        // =================================
+                        // CREATE POST FORM
+                        // =================================
+
+                        const form =
+                            document.createElement(
+                                "form"
+                            );
+
+                        form.method = "POST";
+
+                        form.action =
+                            contextPath + "/cart";
+
+
+                        // action
+                        const actionInput =
+                            document.createElement(
+                                "input"
+                            );
+
+                        actionInput.type = "hidden";
+
+                        actionInput.name = "action";
+
+                        actionInput.value = "add";
+
+
+                        // menuId
+                        const menuIdInput =
+                            document.createElement(
+                                "input"
+                            );
+
+                        menuIdInput.type = "hidden";
+
+                        menuIdInput.name = "menuId";
+
+                        menuIdInput.value =
+                            menuId;
+
+
+                        form.appendChild(
+                            actionInput
+                        );
+
+                        form.appendChild(
+                            menuIdInput
+                        );
+
+
+                        document.body.appendChild(
+                            form
+                        );
+
+
+                        // =================================
+                        // SEND TO CART SERVLET
+                        // =================================
+
+                        form.submit();
+
+                    }
+                );
+
+            });
+
+        })
+
+        .catch(function (error) {
+
+            console.error(
+                "Error loading menu:",
+                error
+            );
+
+        });
+
+    });
+
+});
+
+</script>
+
+
+// ===========

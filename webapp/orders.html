@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Foodie</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        /* HEADER */
+        header {
+            background-color: #ff6b00;
+            color: white;
+            padding: 15px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* PAGE TITLE */
+        .page-title {
+            text-align: center;
+            padding: 35px 20px 20px;
+        }
+
+        .page-title h1 {
+            font-size: 32px;
+            color: #333;
+        }
+
+        .page-title p {
+            margin-top: 8px;
+            color: #777;
+        }
+
+        /* ORDERS CONTAINER */
+        .orders-container {
+            width: 90%;
+            max-width: 900px;
+            margin: 20px auto 50px;
+        }
+
+        /* ORDER CARD */
+        .order-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .order-id {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .order-date {
+            color: #777;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* STATUS */
+        .status {
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .delivered {
+            background-color: #e8f8ee;
+            color: #198754;
+        }
+
+        .preparing {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .cancelled {
+            background-color: #f8d7da;
+            color: #842029;
+        }
+
+        /* ORDER ITEMS */
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .item-name {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .item-quantity {
+            color: #777;
+            font-size: 14px;
+            margin-left: 8px;
+        }
+
+        .item-price {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* ORDER FOOTER */
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 18px;
+        }
+
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .total span {
+            color: #ff6b00;
+        }
+
+        .view-btn {
+            background-color: #ff6b00;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .view-btn:hover {
+            background-color: #e85d00;
+        }
+
+        /* EMPTY ORDERS */
+        .empty-orders {
+            background-color: white;
+            text-align: center;
+            padding: 50px 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .empty-orders h2 {
+            margin-bottom: 10px;
+        }
+
+        .empty-orders p {
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .browse-btn {
+            display: inline-block;
+            background-color: #ff6b00;
+            color: white;
+            text-decoration: none;
+            padding: 11px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .browse-btn:hover {
+            background-color: #e85d00;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-title h1 {
+                font-size: 26px;
+            }
+
+            .order-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .order-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .view-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+
+        <div class="logo">
+            🍴 Foodie
+        </div>
+
+        <nav>
+            <a href="restaurant.html">Home</a>
+            <a href="restaurant.html">Restaurants</a>
+            <a href="cart.html">Cart</a>
+            <a href="orders.html">My Orders</a>
+            <a href="login.html">Logout</a>
+        </nav>
+
+    </header>
+
+
+    <!-- PAGE TITLE -->
+    <section class="page-title">
+
+        <h1>My Orders</h1>
+
+        <p>Track and view your previous orders</p>
+
+    </section>
+
+
+    <!-- ORDERS -->
+<div class="orders-container" id="ordersContainer">
+
+    <div class="empty-orders">
+        <h2>Loading orders...</h2>
+        <p>Please wait while we load your orders.</p>
+    </div>
+
+</div>
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 Foodie. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+<script>
+
+async function loadOrders() {
+
+    const ordersContainer =
+        document.getElementById("ordersContainer");
+
+    try {
+
+        const response =
+            await fetch("orders");
+
+        if (!response.ok) {
+            throw new Error("Failed to load orders");
+        }
+
+        const orders =
+            await response.json();
+
+        displayOrders(orders);
+
+    } catch (error) {
+
+        console.error(error);
+
+        ordersContainer.innerHTML = `
+            <div class="empty-orders">
+                <h2>Unable to load orders</h2>
+                <p>Please try again.</p>
+            </div>
+        `;
+    }
+}
+
+
+function displayOrders(orders) {
+
+    const ordersContainer =
+        document.getElementById("ordersContainer");
+
+
+    // No orders
+    if (!orders || orders.length === 0) {
+
+        ordersContainer.innerHTML = `
+            <div class="empty-orders">
+
+                <h2>No orders yet</h2>
+
+                <p>
+                    You haven't placed any orders yet.
+                </p>
+
+                <a href="restaurant.html"
+                   class="browse-btn">
+                    Browse Restaurants
+                </a>
+
+            </div>
+        `;
+
+        return;
+    }
+
+
+    let html = "";
+
+
+    orders.forEach(function(order) {
+
+        let statusClass =
+            order.status.toLowerCase();
+
+
+        let statusText =
+            order.status.charAt(0).toUpperCase()
+            + order.status.slice(1);
+
+
+        html += `
+
+            <div class="order-card">
+
+                <div class="order-header">
+
+                    <div>
+
+                        <div class="order-id">
+                            Order #${order.orderId}
+                        </div>
+
+                        <div class="order-date">
+                            Ordered on ${order.orderDate}
+                        </div>
+
+                    </div>
+
+                    <span class="status ${statusClass}">
+                        ${statusText}
+                    </span>
+
+                </div>
+
+
+                <div class="order-footer">
+
+                    <div class="total">
+                        Total:
+                        <span>
+                            ₹${Number(order.totalAmount).toFixed(2)}
+                        </span>
+                    </div>
+
+                    <button
+                        class="view-btn"
+                        onclick="viewOrder(${order.orderId})">
+
+                        View Details
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    ordersContainer.innerHTML = html;
+}
+
+
+function viewOrder(orderId) {
+
+    alert("Order Details for Order #" + orderId);
+
+}
+
+
+// Load orders when page opens
+loadOrders();
+
+</script>S
+
+</body>
+</html>

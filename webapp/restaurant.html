@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Restaurants - Foodie</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background: #fff7f0;
+        color: #333;
+    }
+
+    /* Navbar */
+
+    .navbar {
+        height: 70px;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 70px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .logo {
+        font-size: 30px;
+        font-weight: bold;
+        color: #f4510b;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #444;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .nav-links a:hover {
+        color: #f4510b;
+    }
+
+    .cart-btn {
+        background: #f4510b;
+        color: white !important;
+        padding: 10px 20px;
+        border-radius: 8px;
+    }
+
+    /* Hero */
+
+    .hero {
+        text-align: center;
+        padding: 55px 20px 35px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+        color: #222;
+        margin-bottom: 12px;
+    }
+
+    .hero h1 span {
+        color: #f4510b;
+    }
+
+    .hero p {
+        color: #777;
+        font-size: 17px;
+        margin-bottom: 28px;
+    }
+
+    /* Search */
+
+    .search-box {
+        width: 500px;
+        max-width: 90%;
+        margin: auto;
+        position: relative;
+    }
+
+    .search-box input {
+        width: 100%;
+        padding: 15px 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 16px;
+        outline: none;
+        background: white;
+    }
+
+    .search-box input:focus {
+        border-color: #f4510b;
+    }
+
+    /* Restaurant section */
+
+    .restaurant-section {
+        width: 90%;
+        max-width: 1200px;
+        margin: 20px auto 60px;
+    }
+
+    .section-title {
+        font-size: 26px;
+        margin-bottom: 25px;
+        color: #222;
+    }
+
+    .restaurant-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+
+    /* Restaurant card */
+
+    .restaurant-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        transition: 0.3s;
+    }
+
+    .restaurant-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 8px 22px rgba(0,0,0,0.13);
+    }
+
+    .restaurant-card img {
+        width: 100%;
+        height: 210px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .restaurant-info {
+        padding: 18px;
+    }
+
+    .restaurant-info h3 {
+        font-size: 21px;
+        color: #222;
+        margin-bottom: 8px;
+    }
+
+    .cuisine {
+        color: #777;
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .rating {
+        background: #168a38;
+        color: white;
+        padding: 5px 9px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .time {
+        color: #666;
+        font-size: 14px;
+    }
+
+    .menu-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        text-decoration: none;
+        background: #f4510b;
+        color: white;
+        padding: 11px;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .menu-btn:hover {
+        background: #d94000;
+    }
+
+    /* Footer */
+
+    footer {
+        background: #222;
+        color: #ddd;
+        text-align: center;
+        padding: 25px;
+        margin-top: 40px;
+    }
+
+    footer span {
+        color: #f4510b;
+        font-weight: bold;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+        .restaurant-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .navbar {
+            padding: 0 30px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .restaurant-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .navbar {
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            gap: 12px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            font-size: 30px;
+        }
+    }
+
+</style>
+</head>
+
+<body>
+
+<!-- Navigation Bar -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        Foodie
+    </div>
+
+    <div class="nav-links">
+        <a href="restaurant.html">Restaurants</a>
+        <a href="orders.html">Orders</a>
+        <a href="login.html">Logout</a>
+        <a href="cart.html" class="cart-btn">Cart 🛒</a>
+    </div>
+
+</nav>
+
+
+<!-- Hero Section -->
+
+<section class="hero">
+
+    <h1>
+        Delicious Food, <span>Delivered</span>
+    </h1>
+
+    <p>
+        Discover the best restaurants and order your favourite food.
+    </p>
+
+    <div class="search-box">
+        <input type="text"
+               id="searchInput"
+               placeholder="Search for restaurants or cuisines..."
+               onkeyup="searchRestaurants()">
+    </div>
+
+</section>
+
+
+<!-- Restaurants -->
+
+<section class="restaurant-section">
+
+    <h2 class="section-title">
+        Popular Restaurants
+    </h2>
+
+    <div class="restaurant-grid" id="restaurantGrid">
+
+
+        <!-- Restaurant 1 -->
+
+        <div class="restaurant-card">
+
+            <img src="images/restaurant1.jpg"
+                 alt="Biryani House">
+
+            <div class="restaurant-info">
+
+                <h3>Biryani House</h3>
+
+                <p class="cuisine">
+                    Indian • Biryani • Mughlai
+                </p>
+
+                <div class="details">
+
+                    <span class="rating">
+                        ★ 4.5
+                    </span>
+
+                    <span class="time">
+                        30-35 min
+                    </span>
+
+                </div>
+
+                <a href="menu.html?restaurant=BiryaniHouse"
+                   class="menu-btn">
+                    View Menu
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Restaurant 2 -->
+
+        <div class="restaurant-card">
+
+            <img src="images/restaurant2.jpg"
+                 alt="Andhra Spice Kitchen">
+
+            <div class="restaurant-info">
+
+                <h3>Andhra Spice Kitchen</h3>
+
+                <p class="cuisine">
+                    Andhra • South Indian • Spicy
+                </p>
+
+                <div class="details">
+
+                    <span class="rating">
+                        ★ 4.4
+                    </span>
+
+                    <span class="time">
+                        25-30 min
+                    </span>
+
+                </div>
+
+                <a href="menu.html?restaurant=AndhraSpiceKitchen"
+                   class="menu-btn">
+                    View Menu
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Restaurant 3 -->
+
+        <div class="restaurant-card">
+
+            <img src="images/restaurant3.jpg"
+                 alt="South Indian Tiffins">
+
+            <div class="restaurant-info">
+
+                <h3>South Indian Tiffins</h3>
+
+                <p class="cuisine">
+                    South Indian • Breakfast • Tiffins
+                </p>
+
+                <div class="details">
+
+                    <span class="rating">
+                        ★ 4.6
+                    </span>
+
+                    <span class="time">
+                        20-25 min
+                    </span>
+
+                </div>
+
+                <a href="menu.html?restaurant=SouthIndianTiffins"
+                   class="menu-btn">
+                    View Menu
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Restaurant 4 -->
+
+        <div class="restaurant-card">
+
+            <img src="images/restaurant4.jpg"
+                 alt="Tandoori Junction">
+
+            <div class="restaurant-info">
+
+                <h3>Tandoori Junction</h3>
+
+                <p class="cuisine">
+                    North Indian • Tandoori • Kebabs
+                </p>
+
+                <div class="details">
+
+                    <span class="rating">
+                        ★ 4.5
+                    </span>
+
+                    <span class="time">
+                        30-40 min
+                    </span>
+
+                </div>
+
+                <a href="menu.html?restaurant=TandooriJunction"
+                   class="menu-btn">
+                    View Menu
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Restaurant 5 -->
+
+        <div class="restaurant-card">
+
+            <img src="images/restaurant5.jpg"
+                 alt="Pizza Corner">
+
+            <div class="restaurant-info">
+
+                <h3>Pizza Corner</h3>
+
+                <p class="cuisine">
+                    Italian • Pizza • Fast Food
+                </p>
+
+                <div class="details">
+
+                    <span class="rating">
+                        ★ 4.4
+                    </span>
+
+                    <span class="time">
+                        25-30 min
+                    </span>
+
+                </div>
+
+                <a href="menu.html?restaurant=PizzaCorner"
+                   class="menu-btn">
+                    View Menu
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Restaurant 6 -->
+
+        <div class="restaurant-card">
+
+            <img src="images/restaurant6.jpg"
+                 alt="Burger Hub">
+
+            <div class="restaurant-info">
+
+                <h3>Burger Hub</h3>
+
+                <p class="cuisine">
+                    Burgers • Fast Food • Snacks
+                </p>
+
+                <div class="details">
+
+                    <span class="rating">
+                        ★ 4.3
+                    </span>
+
+                    <span class="time">
+                        20-30 min
+                    </span>
+
+                </div>
+
+                <a href="menu.html?restaurant=BurgerHub"
+                   class="menu-btn">
+                    View Menu
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Restaurant 7 -->
+
+        <div class="restaurant-card">
+
+            <img src="images/restaurant7.jpg"
+                 alt="Pasta Point">
+
+            <div class="restaurant-info">
+
+                <h3>Pasta Point</h3>
+
+                <p class="cuisine">
+                    Italian • Pasta • Continental
+                </p>
+
+                <div class="details">
+
+                    <span class="rating">
+                        ★ 4.5
+                    </span>
+
+                    <span class="time">
+                        25-35 min
+                    </span>
+
+                </div>
+
+                <a href="menu.html?restaurant=PastaPoint"
+                   class="menu-btn">
+                    View Menu
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Restaurant 8 -->
+
+        <div class="restaurant-card">
+
+            <img src="images/restaurant8.jpg"
+                 alt="Snack Station">
+
+            <div class="restaurant-info">
+
+                <h3>Snack Station</h3>
+
+                <p class="cuisine">
+                    Snacks • Fast Food • Street Food
+                </p>
+
+                <div class="details">
+
+                    <span class="rating">
+                        ★ 4.2
+                    </span>
+
+                    <span class="time">
+                        15-25 min
+                    </span>
+
+                </div>
+
+                <a href="menu.html?restaurant=SnackStation"
+                   class="menu-btn">
+                    View Menu
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Restaurant 9 -->
+
+        <div class="restaurant-card">
+
+            <img src="images/restaurant9.jpg"
+                 alt="Asian Bowl">
+
+            <div class="restaurant-info">
+
+                <h3>Asian Bowl</h3>
+
+                <p class="cuisine">
+                    Asian • Chinese • Korean
+                </p>
+
+                <div class="details">
+
+                    <span class="rating">
+                        ★ 4.4
+                    </span>
+
+                    <span class="time">
+                        30-35 min
+                    </span>
+
+                </div>
+
+                <a href="menu.html?restaurant=AsianBowl"
+                   class="menu-btn">
+                    View Menu
+                </a>
+
+            </div>
+
+        </div>
+
+		
+		<!-- Restaurant 10 -->
+
+<div class="restaurant-card">
+
+    <img src="images/restaurant10.jpg"
+         alt="Fusion Kitchen">
+
+    <div class="restaurant-info">
+
+        <h3>Fusion Kitchen</h3>
+
+        <p class="cuisine">
+            Fusion • Indian • Continental
+        </p>
+
+        <div class="details">
+
+            <span class="rating">
+                ★ 4.5
+            </span>
+
+            <span class="time">
+                25-30 min
+            </span>
+
+        </div>
+
+        <a href="menu.html?restaurant=FusionKitchen"
+           class="menu-btn">
+            View Menu
+        </a>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- Footer -->
+
+<footer>
+
+    <p>
+        © 2026 <span>Foodie</span> - Food Ordering System
+    </p>
+
+</footer>
+
+
+<!-- Search Function -->
+
+<script>
+
+function searchRestaurants() {
+
+    let input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    let cards =
+        document.getElementsByClassName("restaurant-card");
+
+    for (let i = 0; i < cards.length; i++) {
+
+        let restaurantName =
+            cards[i]
+            .getElementsByTagName("h3")[0]
+            .innerText
+            .toLowerCase();
+
+        let cuisine =
+            cards[i]
+            .getElementsByClassName("cuisine")[0]
+            .innerText
+            .toLowerCase();
+
+        if (restaurantName.includes(input) ||
+            cuisine.includes(input)) {
+
+            cards[i].style.display = "block";
+
+        } else {
+
+            cards[i].style.display = "none";
+
+        }
+    }
+}
+
+</script>
+
+</body>
+</html>
